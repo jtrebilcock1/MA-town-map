@@ -1,0 +1,16 @@
+#map {
+    height: calc(100vh - 100px);
+    width: 100%;
+    z-index: 1;
+    position: relative;
+  }
+  body {
+    margin: 0;
+    padding: 0;
+    color:#000000
+}
+html,
+body,
+#map {
+    height: 100%;
+}
