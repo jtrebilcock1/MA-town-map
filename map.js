@@ -1,4 +1,4 @@
-
+//create map object
 const map = new maplibregl.Map({
     container: 'map',
     style:
@@ -7,6 +7,11 @@ const map = new maplibregl.Map({
     zoom: 8
 });
 
+//add control for zoom, disable rotating
+map.addControl(new maplibregl.NavigationControl());
+map.dragRotate.disable();
+
+//add data from geomjson
 map.on('load', () => {
     map.addSource('ma_towns', {
         'type': 'geojson',
