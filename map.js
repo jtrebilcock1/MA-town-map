@@ -42,9 +42,16 @@ map.on('load', () => {
         'source': 'ma_towns',
         'layout': {},
         'paint': {
-            'fill-color': 'transparent',
+            //for now we'll vary the fill color by pop2020 on arbitrary increments
             'fill-opacity': 1,
             "fill-outline-color": "#000000",
+            "fill-color": [
+                "case",
+                ["==", ["get", "POP2020"], null],
+                "white",
+                ["step", ["get", "POP2020"], "#deebf7", 10000, "#9ecae1", 100000, "#3182bd"]
+              ]
+            
         }
     });
 
@@ -71,9 +78,4 @@ map.on('load', () => {
                 )
                 .addTo(map);
         });
-
-
-
-
-
 });
