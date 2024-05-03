@@ -1,22 +1,22 @@
 const osm_style = {
     version: 8,
     sources: {
-      osm: {
-        type: "raster",
-        tiles: ["https://a.tile.openstreetmap.org/{z}/{x}/{y}.png"],
-        tileSize: 256,
-        attribution: "&copy; OpenStreetMap Contributors",
-        maxzoom: 25,
-      },
+        osm: {
+            type: "raster",
+            tiles: ["https://a.tile.openstreetmap.org/{z}/{x}/{y}.png"],
+            tileSize: 256,
+            attribution: "&copy; OpenStreetMap Contributors",
+            maxzoom: 25,
+        },
     },
     layers: [
-      {
-        id: "osm",
-        type: "raster",
-        source: "osm",
-      },
+        {
+            id: "osm",
+            type: "raster",
+            source: "osm",
+        },
     ],
-  };
+};
 
 //create map object
 const map = new maplibregl.Map({
@@ -50,22 +50,22 @@ map.on('load', () => {
                 ["==", ["get", "POP2020"], null],
                 "white",
                 ["step", ["get", "POP2020"], "#deebf7", 10000, "#9ecae1", 100000, "#3182bd"]
-              ]
-            
+            ]
+
         }
     });
 
-        // When a click event occurs on a feature in the places layer, open a popup at the
-        // location of the feature, with description HTML from its properties.
-        map.on('click', 'ma_towns', (e) => {
-            const town_name = e.features[0].properties.TOWN20;
-            const population20 = e.features[0].properties.POP2020;
-            const population10 = e.features[0].properties.POP2010;
-            const pop_diff = population20-population10;
-            new maplibregl.Popup()
-                .setLngLat(e.lngLat)
-                .setHTML(
-                    `
+    // When a click event occurs on a feature in the places layer, open a popup at the
+    // location of the feature, with description HTML from its properties.
+    map.on('click', 'ma_towns', (e) => {
+        const town_name = e.features[0].properties.TOWN20;
+        const population20 = e.features[0].properties.POP2020;
+        const population10 = e.features[0].properties.POP2010;
+        const pop_diff = population20 - population10;
+        new maplibregl.Popup()
+            .setLngLat(e.lngLat)
+            .setHTML(
+                `
                     <div class="card text-center">
                       <div class="card-body">
                         <p class="card-text"><strong>${town_name}</strong></p>
@@ -75,7 +75,7 @@ map.on('load', () => {
                       </div>
                     </div>
                     `
-                )
-                .addTo(map);
-        });
+            )
+            .addTo(map);
+    });
 });
