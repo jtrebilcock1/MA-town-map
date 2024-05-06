@@ -18,6 +18,19 @@ const osm_style = {
     ],
 };
 
+//legend
+document.addEventListener("DOMContentLoaded", function () {
+    const toggleLegendButton = document.getElementById("toggle-legend");
+    const legendContainer = document.getElementById("legend-container");
+
+    toggleLegendButton.addEventListener("click", function () {
+        if (legendContainer.classList.contains("d-none")) {
+            legendContainer.classList.remove("d-none");
+        } else {
+            legendContainer.classList.add("d-none");
+        }
+    });
+});
 //create map object
 const map = new maplibregl.Map({
     container: 'map',
